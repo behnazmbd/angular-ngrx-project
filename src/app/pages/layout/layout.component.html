@@ -1,0 +1,9 @@
+<app-toast></app-toast>
+<nav class="bg-gray-200 p-4 flex justify-between">
+  <ul class="flex space-x-4">
+    <li *ngIf="role === 'admin'"><a routerLink="/users">Users</a></li>
+    <li><a routerLink="/dashboard">Dashboard</a></li>
+  </ul>
+  <button (click)="logout()" class="bg-red-500 text-white px-3 py-1 rounded">Logout</button>
+</nav>
+<router-outlet></router-outlet>
