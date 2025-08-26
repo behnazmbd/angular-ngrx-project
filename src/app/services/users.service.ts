@@ -1,37 +1,42 @@
 import { Injectable } from '@angular/core';
-import {Observable, of} from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+
 export interface User {
   id: number;
   username: string;
   role: string;
 }
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class UsersService {
   private users: User[] = [
     { id: 1, username: 'admin', role: 'admin' },
     { id: 2, username: 'user1', role: 'user' },
-    { id: 3, username: 'user2', role: 'user' },
+    { id: 3, username: 'user2', role: 'user' }
   ];
+
+  private users$ = new BehaviorSubject<User[]>([...this.users]);
+
   getUsers(): Observable<User[]> {
-    return of(this.users);
+    return this.users$.asObservable();
   }
 
-  addUser(user: User): Observable<User> {
-    user.id = this.users.length + 1;
-    this.users.push(user);
-    return of(user);
+  addUser(user: Omit<User, 'id'>) {
+    const maxId = this.users.length ? Math.max(...this.users.map(u => u.id)) : 0;
+    const newUser = { ...user, id: maxId + 1 };
+    this.users.push(newUser);
+    this.users$.next([...this.users]); // بروزرسانی BehaviorSubject
   }
 
-  updateUser(user: User): Observable<User> {
+  updateUser(user: User) {
     this.users = this.users.map(u => u.id === user.id ? user : u);
-    return of(user);
+    this.users$.next([...this.users]);
+    return this.users$.asObservable();
   }
 
-  deleteUser(id: number): Observable<void> {
+  deleteUser(id: number) {
     this.users = this.users.filter(u => u.id !== id);
-    return of(void 0);
+    this.users$.next([...this.users]);
+    return this.users$.asObservable();
   }
 }

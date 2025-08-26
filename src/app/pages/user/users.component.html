@@ -5,18 +5,18 @@
     <table class="table-auto border-collapse border border-gray-300 w-full text-center mt-4">
       <thead>
       <tr class="bg-gray-100">
-        <th class="border border-gray-300 px-4 py-2">ID</th>
-        <th class="border border-gray-300 px-4 py-2">Username</th>
-        <th class="border border-gray-300 px-4 py-2">Role</th>
-        <th class="border border-gray-300 px-4 py-2">Actions</th>
+        <th class="border border-gray-300 px-4 py-2 text-gray-900">ID</th>
+        <th class="border border-gray-300 px-4 py-2 text-gray-900">Username</th>
+        <th class="border border-gray-300 px-4 py-2 text-gray-900">Role</th>
+        <th class="border border-gray-300 px-4 py-2 text-gray-900">Actions</th>
       </tr>
       </thead>
       <tbody>
       <tr *ngFor="let user of users$ | async" class="hover:bg-gray-50">
-        <td class="border border-gray-300 px-4 py-2">{{ user.id }}</td>
-        <td class="border border-gray-300 px-4 py-2">{{ user.username }}</td>
-        <td class="border border-gray-300 px-4 py-2">{{ user.role }}</td>
-        <td class="border border-gray-300 px-4 py-2 flex justify-center gap-2">
+        <td class="border border-gray-300 px-4 py-2 text-gray-900 dark:text-white">{{ user.id }}</td>
+        <td class="border border-gray-300 px-4 py-2 text-gray-900 dark:text-white">{{ user.username }}</td>
+        <td class="border border-gray-300 px-4 py-2 text-gray-900 dark:text-white">{{ user.role }}</td>
+        <td class="border border-gray-300 px-4 py-2 text-gray-900 dark:text-white flex justify-center gap-2">
           <button (click)="openEditModal(user)" class="bg-yellow-500 text-white px-3 py-1 rounded">Edit</button>
           <button (click)="deleteUser(user.id)" class="bg-red-500 text-white px-3 py-1 rounded">Delete</button>
         </td>
@@ -26,7 +26,6 @@
   </div>
 
 
-
   <!-- Modal همیشه تو DOM هست -->
   <div [class.hidden]="!isModalOpen" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
     <div class="bg-white p-6 rounded shadow-md w-80">
@@ -34,7 +33,7 @@
       <form [formGroup]="userForm" (ngSubmit)="submit()">
         <div class="mb-2">
           <label for="username">Username</label>
-          <input formControlName="username" class="w-full border px-2 py-1 rounded" />
+          <input formControlName="username" class="w-full border px-2 py-1 rounded"/>
           <p *ngIf="userForm.get('username')?.touched && userForm.get('username')?.invalid"
              class="text-red-500 text-sm">
             Username is required and must be at least 3 characters
@@ -42,7 +41,7 @@
         </div>
         <div class="mb-2">
           <label for="role">Role</label>
-          <input formControlName="role" class="w-full border px-2 py-1 rounded" />
+          <input formControlName="role" class="w-full border px-2 py-1 rounded"/>
           <p *ngIf="userForm.get('role')?.touched && userForm.get('role')?.invalid"
              class="text-red-500 text-sm">
             Role is required

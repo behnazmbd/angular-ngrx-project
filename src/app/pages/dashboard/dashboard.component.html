@@ -1,1 +1,16 @@
-<p>dashboard works!</p>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+  <div class="p-6 rounded-2xl shadow bg-white dark:bg-gray-800">
+    <p class="text-sm text-gray-500 dark:text-white">Users</p>
+    <h2 class="text-2xl font-bold dark:text-white">{{ usersCount$ | async }}</h2>
+  </div>
+  <div class="p-6 rounded-2xl shadow bg-white dark:bg-gray-800">
+    <p class="text-sm text-gray-500 dark:text-white">Projects</p>
+    <h2 class="text-2xl font-bold dark:text-white">{{ projectsCount$ | async }}</h2>
+  </div>
+  <div class="p-6 rounded-2xl shadow bg-white dark:bg-gray-800">
+    <p class="text-sm dark:text-white">Tasks</p>
+    <h2 class="text-2xl font-bold dark:text-white">{{ tasksCount$ | async }}</h2>
+  </div>
+</div>
+
+<app-activity-chart></app-activity-chart>

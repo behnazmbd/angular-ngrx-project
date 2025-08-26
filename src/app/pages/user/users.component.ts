@@ -22,12 +22,14 @@ export class UsersComponent implements OnInit {
   userForm!: FormGroup;
   editingUser: User | null = null;
   isModalOpen = false;
+  users: User[] = [];
 
   private store = inject(Store<UsersState>);
   private fb = inject(FormBuilder);
   private usersService = inject(UsersService);
   private toast = inject(ToastService);
   ngOnInit() {
+    this.users$ = this.usersService.getUsers();
     this.userForm = this.fb.group({
       username: ['', [Validators.required, Validators.minLength(3)]],
       role: ['', Validators.required]
@@ -42,9 +44,7 @@ export class UsersComponent implements OnInit {
 
   openAddModal() {
     this.editingUser = null;
-    this.userForm.reset({ username: '', role: '' });
-    this.userForm.markAsUntouched();
-    this.userForm.markAsPristine();
+    this.userForm.reset();
     this.isModalOpen = true;
   }
 
@@ -55,29 +55,14 @@ export class UsersComponent implements OnInit {
   }
 
   submit() {
-    if (this.userForm.invalid) {
-      this.toast.show('Please fix the errors in the form!', 'error');
-      return;
-    }
-
-    const formValue = this.userForm.value;
     if (this.editingUser) {
-      const updatedUser = { ...this.editingUser, ...formValue };
-      this.usersService.updateUser(updatedUser).subscribe(user => {
-        this.store.dispatch(UsersActions.updateUser({ user }));
-        this.toast.show('User edited successfully!', 'success');
-      });
+      const updatedUser = { ...this.editingUser, ...this.userForm.value };
+      this.usersService.updateUser(updatedUser);
     } else {
-      this.usersService.addUser(formValue).subscribe(user => {
-        this.store.dispatch(UsersActions.addUser({ user }));
-        this.toast.show('User added successfully!', 'success');
-      });
+      this.usersService.addUser(this.userForm.value);
     }
-    this.userForm.reset();
-    this.editingUser = null;
-    this.isModalOpen = false;
+    this.closeModal();
   }
-
   closeModal() {
     this.userForm.reset();
     this.editingUser = null;

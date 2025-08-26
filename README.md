@@ -1,24 +1,37 @@
 # WebDomain
 
-## توضیح پروژه
+## Project Description
 
-این پروژه یک وب‌اپلیکیشن مدیریت دامنه است که با استفاده از Angular 18 و Tailwind CSS ساخته شده است. این اپلیکیشن امکانات زیر را ارائه می‌دهد:
+This project is a domain management web application built using Angular 18 and Tailwind CSS. The application provides the following features:
 
-- صفحه ورود با احراز هویت
-- داشبورد مدیریتی
-- مدیریت کاربران با نقش‌های مختلف
+- Login page with authentication
+- Administrative dashboard
+- User management with different roles
 
-## تکنولوژی‌های استفاده‌شده
+## Technologies Used
 
 - Angular 18
-- NgRx برای مدیریت وضعیت
-- Tailwind CSS برای طراحی رابط کاربری
-- ESLint برای بررسی کیفیت کد
+- NgRx for state management
+- Tailwind CSS for UI design
+- ESLint for code quality checks
 
-## نحوه راه‌اندازی پروژه
+## How to Run the Project
 
-1. نصب وابستگی‌ها:
+1. Install dependencies:
 
    ```bash
    npm install
-   npm run dev
+
+
+## Run the application:
+
+npm run dev
+
+## Admin user (has full access):
+user: admin
+password: 123
+
+## Regular user (no access to the Users page):
+user: user
+password: 123
+
