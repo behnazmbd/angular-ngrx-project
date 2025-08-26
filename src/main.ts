@@ -10,8 +10,8 @@ import {provideCharts, withDefaultRegisterables} from 'ng2-charts';
 
 bootstrapApplication(AppComponent, {
   providers: [
-    provideStore({ users: usersReducer }),
-    provideStoreDevtools({ maxAge: 25 }),
+    provideStore({users: usersReducer}),
+    provideStoreDevtools({maxAge: 25}),
     provideRouter(routes),
     provideHttpClient(),
     provideCharts(withDefaultRegisterables())

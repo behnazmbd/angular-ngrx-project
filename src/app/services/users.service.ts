@@ -25,7 +25,7 @@ export class UsersService {
     const maxId = this.users.length ? Math.max(...this.users.map(u => u.id)) : 0;
     const newUser = { ...user, id: maxId + 1 };
     this.users.push(newUser);
-    this.users$.next([...this.users]); // بروزرسانی BehaviorSubject
+    this.users$.next([...this.users]);
   }
 
   updateUser(user: User) {

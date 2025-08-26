@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import {Observable, of} from 'rxjs';
+
 export interface Project {
   id: number;
   name: string;
   description: string;
   ownerId: number;
 }
-
 
 @Injectable({
   providedIn: 'root'
