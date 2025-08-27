@@ -10,7 +10,7 @@ import {BaseChartDirective} from 'ng2-charts';
   ],
   template: `
     <div class="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-md">
-      <h2 class="text-lg font-bold mb-4 dark:text-white">نمودار فعالیت</h2>
+      <h2 class="text-lg font-bold mb-4 dark:text-white">Activity Plot</h2>
       <canvas baseChart
         [data]="chartData"
         [options]="chartOptions"
@@ -33,10 +33,10 @@ import {BaseChartDirective} from 'ng2-charts';
 })
 export class ActivityChartComponent {
   chartData = {
-    labels: ['شنبه', 'یکشنبه', 'دوشنبه', 'سه‌شنبه', 'چهارشنبه'],
+    labels: ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday'],
     datasets: [
       {
-        label: 'فعالیت کاربران',
+        label: 'user Activity',
         data: [12, 19, 3, 5, 2],
         borderColor: 'blue',
         backgroundColor: 'rgba(30,144,255,0.3)',
@@ -57,7 +57,7 @@ export class ActivityChartComponent {
         display: true,
         title: {
           display: true,
-          text: 'روزهای هفته'
+          text: 'Days'
         },
         ticks: { color: '#000' },
         grid: { display: true }
@@ -66,7 +66,7 @@ export class ActivityChartComponent {
         display: true,
         title: {
           display: true,
-          text: 'میزان فعالیت'
+          text: 'Amount of Activity'
         },
         ticks: { color: '#000' },
         grid: { display: true }
