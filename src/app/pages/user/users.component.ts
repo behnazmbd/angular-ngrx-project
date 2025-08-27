@@ -58,8 +58,10 @@ export class UsersComponent implements OnInit {
     if (this.editingUser) {
       const updatedUser = { ...this.editingUser, ...this.userForm.value };
       this.usersService.updateUser(updatedUser);
+      this.toast.show('User edited successfully!', 'success');
     } else {
       this.usersService.addUser(this.userForm.value);
+      this.toast.show('User added successfully!', 'success');
     }
     this.closeModal();
   }
