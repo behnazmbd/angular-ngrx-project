@@ -8,18 +8,7 @@ import {HeaderComponent} from '../../share/header.component';
   selector: 'app-layout',
   standalone: true,
   imports: [RouterOutlet, HeaderComponent, SidebarComponent],
-  template: `
-    <div class="flex h-screen">
-      <app-sidebar class="w-64 flex-shrink-0"></app-sidebar>
-      <div class="flex-1 flex flex-col">
-        <app-header (logout)="logout()"></app-header>
-        <main class="flex-1 overflow-y-auto p-6 bg-gray-50 dark:bg-gray-900">
-          <router-outlet></router-outlet>
-        </main>
-      </div>
-    </div>
-
-  `,
+  templateUrl: 'layout.component.html' ,
 })
 export class LayoutComponent {
   private auth = inject(AuthService);

@@ -6,8 +6,6 @@ import {ProjectService} from '../../services/project.service';
 import {TasksService} from '../../services/task.service';
 import {ActivityChartComponent} from '../../share/ActivityChart.component';
 
-
-
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
